@@ -28,27 +28,36 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:ellipsize="end"
-            android:fontFamily="@font/font_compose"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
-            app:layout_constraintTop_toTopOf="@id/imgCryptoCurrencies"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Bitcoin" />
 
         <TextView
-            android:id="@+id/tvPriceCryptocurrency"
+            android:id="@+id/tvPriceMinCryptocurrency"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:ellipsize="end"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
             app:layout_constraintTop_toBottomOf="@id/tvNameCryptocurrency"
             tools:text="$3,000.00" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvPriceMaxCryptocurrency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
+            app:layout_constraintTop_toBottomOf="@id/tvPriceMinCryptocurrency"
+            tools:text="$3,000.00" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

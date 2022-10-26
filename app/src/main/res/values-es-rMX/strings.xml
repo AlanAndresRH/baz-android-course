@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">FinalProjectWizelineCryptocurrencies</string>
     <string name="title_app">Criptomonedas</string>
+    <string name="content_description_image">Imagen</string>
+    <string name="error_http_exception">Oops! Algo salió mal</string>
+    <string name="error_io_exception">No se pudo llegar al servidor, verifique su conexión a Internet</string>
 </resources>
