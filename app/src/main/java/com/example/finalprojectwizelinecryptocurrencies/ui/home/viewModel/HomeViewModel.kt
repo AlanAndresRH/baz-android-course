@@ -2,90 +2,62 @@ package com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalprojectwizelinecryptocurrencies.dominian.useCase.GetBooksUseCase
+import com.example.finalprojectwizelinecryptocurrencies.dominian.useCase.GetBooksFilterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import com.example.finalprojectwizelinecryptocurrencies.ui.state.HomeState
+import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 import kotlinx.coroutines.flow.*
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getBooksUseCase: GetBooksUseCase
+    private val getBooksFilterUseCase: GetBooksFilterUseCase
 ) : ViewModel() {
 
     val state = MutableStateFlow(HomeState(isLoading = true))
 
-    //val stateBook: MutableStateFlow<ResultApi<List<Book>>> = MutableStateFlow(ResultApi.Loading())
-
-    private val _eventFlow = MutableSharedFlow<UIEvent>()
-    //val eventFlow = _eventFlow.asSharedFlow()
-
     init {
-        getBooks()
+        changeFilterKey(KeyFilter.FILTER_MXN)
     }
 
-    private fun getBooks() {
-        viewModelScope.launch {
-            /*getBooksUseCase().onEach { result ->
-                stateBook.value = result
-
-                /*when (result) {
-                    is ResultApi.Success -> {
-                        state.update {
-                            it.copy(
-                                books = result.data ?: emptyList(),
-                                isLoading = false
-                            )
-                        }
-                    }
-
-                    is ResultApi.Error -> {
-                        _eventFlow.emit(UIEvent.ShowSnackBar(result.message ?: "Unknown Error"))
-                        state.update {
-                            it.copy(
-                                isLoading = false
-                            )
-                        }
-                    }
-
-                    is ResultApi.Loading -> {
-                        state.update {
-                            it.copy(
-                                isLoading = true
-                            )
-                        }
-                    }
-                }*/
-            }*/
-
-            state.update {
-                it.copy(
-                    isLoading = true
-                )
-            }
-            val response = getBooksUseCase()
-
-            response.fold({  res ->
-                state.update { state ->
-                    state.copy(
-                        books = res,
-                        isLoading = false
-                    )
-                }
-            }, {
-                _eventFlow.emit(UIEvent.ShowSnackBar(it.message ?: "Unknown error"))
-
-                state.update { state ->
-                    state.copy(
-                        isLoading = false
-                    )
-                }
-            })
+    fun changeFilterKey(key: KeyFilter) {
+        state.update {
+            it.copy(
+                isLoading = true
+            )
         }
-    }
 
-    sealed class UIEvent {
-        data class ShowSnackBar(val message: String) : UIEvent()
+        viewModelScope.launch {
+            val resBook = getBooksFilterUseCase(key)
+            resBook.fold({ resSuccess ->
+                state.update {
+                    it.copy(
+                        books = resSuccess,
+                        keyFilter = key,
+                        isLoading = false
+                    )
+                }
+            },
+                {
+                    val errorMsg = when (it) {
+                        is HttpException -> "Error de conexión"
+
+                        is IOException -> "Error en el servicio verifique conexión a internet"
+
+                        else -> "Unknown error"
+                    }
+
+                    state.update { state ->
+                        state.copy(
+                            isLoading = false,
+                            errorMsg = errorMsg
+                        )
+                    }
+                }
+            )
+        }
     }
 }

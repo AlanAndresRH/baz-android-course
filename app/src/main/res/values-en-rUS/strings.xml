@@ -5,4 +5,13 @@
     <string name="content_description_image">Image</string>
     <string name="error_http_exception">Oops, something, went wrong</string>
     <string name="error_io_exception">Couldn\'t reach server, check your internet connection</string>
+    <string name="title_detail_cryptocurrency">Detail</string>
+    <string name="lbl_crypto">Cryptocurrency:</string>
+    <string name="lbl_name_book">Book:</string>
+    <string name="lbl_volume">Volume:</string>
+    <string name="lbl_high">High:</string>
+    <string name="lbl_created_at">Created at:</string>
+    <string name="sort_list_mxn">Only Mexico</string>
+    <string name="sort_list_all">All the countries</string>
+    <string name="filter_menu">Filter</string>
 </resources>

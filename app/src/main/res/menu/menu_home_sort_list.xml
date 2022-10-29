@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_filter_list"
+        android:title="@string/filter_menu"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/filter_list_mxn"
+                android:title="@string/sort_list_mxn" />
+            <item
+                android:id="@+id/filter_list_all"
+                android:title="@string/sort_list_all" />
+        </menu>
+
+    </item>
+
+</menu>

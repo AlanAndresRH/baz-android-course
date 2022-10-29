@@ -5,4 +5,13 @@
     <string name="content_description_image">Imagen</string>
     <string name="error_http_exception">Oops! Algo salió mal</string>
     <string name="error_io_exception">No se pudo llegar al servidor, verifique su conexión a Internet</string>
+    <string name="title_detail_cryptocurrency">Detalle</string>
+    <string name="lbl_crypto">Criptomoneda:</string>
+    <string name="lbl_name_book">Book:</string>
+    <string name="lbl_volume">Cantidad:</string>
+    <string name="lbl_high">Alta:</string>
+    <string name="lbl_created_at">Creado:</string>
+    <string name="sort_list_mxn">Solo México</string>
+    <string name="sort_list_all">Todos los países</string>
+    <string name="filter_menu">Filtrar</string>
 </resources>

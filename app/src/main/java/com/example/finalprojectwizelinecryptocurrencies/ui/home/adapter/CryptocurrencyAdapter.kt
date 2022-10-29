@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.ItemCryptocurrenciesBinding
 import com.example.finalprojectwizelinecryptocurrencies.dominian.model.Book
@@ -25,7 +26,12 @@ class CryptocurrencyAdapter(private val onClick: (Book) -> Unit) :
         holder.binding.apply {
             root.setOnClickListener { onClick(cryptocurrency) }
 
-            tvNameCryptocurrency.text = cryptocurrency.book
+            Glide.with(imgCryptoCurrencies.context)
+                .load(cryptocurrency.image)
+                .into(imgCryptoCurrencies)
+
+            tvNameCryptocurrency.text = cryptocurrency.nameCrypto
+            tvNameBook.text = cryptocurrency.book
             tvPriceMinCryptocurrency.text = cryptocurrency.minimum_price
             tvPriceMaxCryptocurrency.text = cryptocurrency.maximum_price
         }

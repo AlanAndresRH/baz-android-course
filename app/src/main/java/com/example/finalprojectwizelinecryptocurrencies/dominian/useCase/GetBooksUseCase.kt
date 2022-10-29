@@ -9,6 +9,6 @@ class GetBooksUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Result<List<Book>> {
-        return repository.getBooksNew()
+        return repository.getBooks()
     }
 }
