@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies
+package com.example.finalprojectwizelinecryptocurrencies.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.FragmentDetailCryptocurrencyBinding
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.adapters.AsksBidsAdapter
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.viewModel.DetailViewModel
@@ -47,7 +47,7 @@ class DetailCryptocurrencyFragment : Fragment() {
         detailViewModel.getOrderBook(book)
 
         binding.toolbarDetail.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_detailCryptocurrencyFragment_to_homeCryptocurrencyFragment)
+            findNavController().popBackStack()
         }
         binding.rvAsks.apply {
             hasFixedSize()

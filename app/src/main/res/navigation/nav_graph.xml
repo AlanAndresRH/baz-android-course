@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeCryptocurrencyFragment"
-        android:name="com.example.finalprojectwizelinecryptocurrencies.HomeCryptocurrencyFragment"
+        android:name="com.example.finalprojectwizelinecryptocurrencies.ui.home.HomeCryptocurrencyFragment"
         android:label="fragment_home_cryptocurrency"
         tools:layout="@layout/fragment_home_cryptocurrency">
 
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/detailCryptocurrencyFragment"
-        android:name="com.example.finalprojectwizelinecryptocurrencies.DetailCryptocurrencyFragment"
+        android:name="com.example.finalprojectwizelinecryptocurrencies.ui.detail.DetailCryptocurrencyFragment"
         android:label="fragment_detail_cryptocurrecy"
         tools:layout="@layout/fragment_detail_cryptocurrency">
 

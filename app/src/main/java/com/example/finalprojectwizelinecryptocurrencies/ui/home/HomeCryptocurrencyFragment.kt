@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies
+package com.example.finalprojectwizelinecryptocurrencies.ui.home
 
 import android.os.Bundle
 import android.view.*
@@ -12,7 +12,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.FragmentHomeCryptocurrencyBinding
 import com.example.finalprojectwizelinecryptocurrencies.ui.home.adapter.CryptocurrencyAdapter
 import com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel.HomeViewModel
@@ -34,6 +36,11 @@ class HomeCryptocurrencyFragment : Fragment() {
                     book ?: ""
                 )
             findNavController().navigate(action)
+
+            navOptions {
+                launchSingleTop = true
+                restoreState = true
+            }
         }
     }
 
