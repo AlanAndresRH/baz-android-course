@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeCryptocurrencyFragment">
+
+    <fragment
+        android:id="@+id/homeCryptocurrencyFragment"
+        android:name="com.example.finalprojectwizelinecryptocurrencies.HomeCryptocurrencyFragment"
+        android:label="fragment_home_cryptocurrency"
+        tools:layout="@layout/fragment_home_cryptocurrency">
+
+        <action
+            android:id="@+id/action_homeCryptocurrencyFragment_to_detailCryptocurrencyFragment"
+            app:destination="@id/detailCryptocurrencyFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailCryptocurrencyFragment"
+        android:name="com.example.finalprojectwizelinecryptocurrencies.DetailCryptocurrencyFragment"
+        android:label="fragment_detail_cryptocurrecy"
+        tools:layout="@layout/fragment_detail_cryptocurrency">
+
+        <argument
+            android:name="book"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detailCryptocurrencyFragment_to_homeCryptocurrencyFragment"
+            app:destination="@id/homeCryptocurrencyFragment" />
+    </fragment>
+
+</navigation>

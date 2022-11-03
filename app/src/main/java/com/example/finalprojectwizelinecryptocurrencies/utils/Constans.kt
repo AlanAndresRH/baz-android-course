@@ -4,7 +4,7 @@ import com.example.finalprojectwizelinecryptocurrencies.R
 
 const val BASE_URL = "https://api.bitso.com/v3/"
 
-val ICON_BOOK: Map<String, Int> = mapOf(
+val ICON_BOOK = mapOf(
     "btc" to R.drawable.ic_btc,
     "eth" to R.drawable.ic_eth,
     "xrp" to R.drawable.ic_xrp,
@@ -46,7 +46,7 @@ val ICON_BOOK: Map<String, Int> = mapOf(
     "bal" to R.drawable.ic_bal,
     "trx" to R.drawable.ic_trx,
     "algo" to R.drawable.ic_algo,
-    //"ldo" to R.drawable.ic_ldo,
+    "ldo" to R.drawable.ic_ldo,
     "xlm" to R.drawable.ic_xlm,
     "paxg" to R.drawable.ic_paxg
 )

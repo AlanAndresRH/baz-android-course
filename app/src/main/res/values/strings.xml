@@ -13,5 +13,9 @@
     <string name="sort_list_mxn">Solo México</string>
     <string name="sort_list_all">Todos los países</string>
     <string name="filter_menu">Filtrar</string>
+    <string name="lbl_asks">Asks:</string>
+    <string name="lbl_bids">Bids:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

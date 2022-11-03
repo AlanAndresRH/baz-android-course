@@ -19,8 +19,8 @@ fun BooksDto.toListBooks(): List<Book> {
             book = entries.book,
             nameCrypto = NAME_BOOK[bookSplit?.get(0)] ?: "Unknown",
             image = ICON_BOOK[bookSplit?.get(0)] ?: R.drawable.ic_btc,
-            minimum_price = entries.minimum_price?.formatCurrency(),
-            maximum_price = entries.maximum_price?.formatCurrency()
+            minimum_price = entries.minimum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN"),
+            maximum_price = entries.maximum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN")
         )
     }
 

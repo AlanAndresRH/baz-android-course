@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalprojectwizelinecryptocurrencies.R
-import com.example.finalprojectwizelinecryptocurrencies.databinding.ActivityMainBinding
+import com.example.finalprojectwizelinecryptocurrencies.databinding.ActivityHomeCryptocurrencyBinding
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.DetailCryptocurrencyActivity
 import com.example.finalprojectwizelinecryptocurrencies.ui.home.adapter.CryptocurrencyAdapter
 import com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel.HomeViewModel
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeCryptocurrencyActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityHomeCryptocurrencyBinding
 
     private val homeViewModel by viewModels<HomeViewModel>()
     private val adtHome: CryptocurrencyAdapter by lazy {
@@ -36,7 +36,7 @@ class HomeCryptocurrencyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater, null, false)
+        binding = ActivityHomeCryptocurrencyBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbarHome)
@@ -50,12 +50,13 @@ class HomeCryptocurrencyActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 homeViewModel.state.collect { uiState ->
-                    binding.progressBarHome.isVisible = uiState.isLoading
                     adtHome.submitList(uiState.books)
 
                     if (!uiState.errorMsg.isNullOrEmpty())
                         Snackbar.make(binding.root, "${uiState.errorMsg}", Snackbar.LENGTH_SHORT)
                             .show()
+
+                    binding.containerProgress.isVisible = uiState.isLoading
                 }
             }
         }

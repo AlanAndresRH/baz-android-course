@@ -1,57 +1,73 @@
-package com.example.finalprojectwizelinecryptocurrencies.ui.detail
+package com.example.finalprojectwizelinecryptocurrencies
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.finalprojectwizelinecryptocurrencies.databinding.ActivityDetailCryptocurrencyBinding
+import com.example.finalprojectwizelinecryptocurrencies.databinding.FragmentDetailCryptocurrencyBinding
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.adapters.AsksBidsAdapter
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.viewModel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DetailCryptocurrencyActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailCryptocurrencyBinding
+class DetailCryptocurrencyFragment : Fragment() {
+    private lateinit var binding: FragmentDetailCryptocurrencyBinding
 
+    private val args: DetailCryptocurrencyFragmentArgs by navArgs()
     private val detailViewModel by viewModels<DetailViewModel>()
     private val askAdapter: AsksBidsAdapter by lazy { AsksBidsAdapter() }
     private val bidsAdapter: AsksBidsAdapter by lazy { AsksBidsAdapter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityDetailCryptocurrencyBinding.inflate(layoutInflater, null, false)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentDetailCryptocurrencyBinding.inflate(inflater, container, false)
 
-        val book = intent.getStringExtra("book") ?: ""
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val book = args.book
         detailViewModel.getDetail(book)
         detailViewModel.getOrderBook(book)
 
-        binding.toolbarDetail.setNavigationOnClickListener { finish() }
+        binding.toolbarDetail.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_detailCryptocurrencyFragment_to_homeCryptocurrencyFragment)
+        }
         binding.rvAsks.apply {
             hasFixedSize()
             layoutManager =
-                LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = askAdapter
         }
         binding.rvBids.apply {
             hasFixedSize()
             layoutManager =
-                LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = bidsAdapter
         }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                detailViewModel.state.collect() { uiState ->
+                detailViewModel.state.collect { uiState ->
                     binding.apply {
-                        Glide.with(applicationContext)
+                        Glide.with(requireContext())
                             .load(uiState.book.image)
                             .centerCrop()
                             .into(imgCryptoCurrencies)
