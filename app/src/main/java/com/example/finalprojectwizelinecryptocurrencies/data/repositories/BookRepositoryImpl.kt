@@ -19,6 +19,7 @@ class BookRepositoryImpl @Inject constructor(
     private val bookDao: BookDao,
     private val bookDetailDao: BookDetailDao,
     private val orderBookDao: OrderBookDao
+
 ) : CryptocurrencyRepository {
 
     override suspend fun getBooks(): Result<List<Book>> = withContext(Dispatchers.IO) {
