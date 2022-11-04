@@ -9,8 +9,8 @@ import com.example.finalprojectwizelinecryptocurrencies.data.source.local.entiti
 @Dao
 interface BookDetailDao {
 
-    @Query("SELECT * FROM bookDetailEntity")
-    suspend fun getBookDetail(): BookDetailEntity
+    @Query("SELECT * FROM bookDetailEntity WHERE book = :book")
+    suspend fun getBookDetail(book: String): BookDetailEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBookDetail(bookDetail: BookDetailEntity)

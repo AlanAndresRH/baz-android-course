@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dababase.CryptocurrencyDataBase
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDetailDao
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.CryptocurrencyDao
+import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDao
+import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.OrderBookDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,12 +28,16 @@ object LocalModule {
 
     @Provides
     @Singleton
-    fun provideCryptocurrencyDao(cryptocurrencyDatabase: CryptocurrencyDataBase): CryptocurrencyDao =
-        cryptocurrencyDatabase.cryptocurrencyDao()
+    fun provideCryptocurrencyDao(cryptocurrencyDatabase: CryptocurrencyDataBase): BookDao =
+        cryptocurrencyDatabase.bookDao()
 
     @Provides
     @Singleton
     fun provideBookDetailDao(cryptocurrencyDatabase: CryptocurrencyDataBase): BookDetailDao =
         cryptocurrencyDatabase.bookDetailDao()
 
+    @Provides
+    @Singleton
+    fun provideOrderBookDao(cryptocurrencyDatabase: CryptocurrencyDataBase): OrderBookDao =
+        cryptocurrencyDatabase.orderBookDao()
 }

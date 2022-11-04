@@ -1,8 +1,18 @@
 package com.example.finalprojectwizelinecryptocurrencies.dominian.model
 
+import com.example.finalprojectwizelinecryptocurrencies.data.source.local.entities.OrderBookEntity
+
 data class OrderBook(
-    val asks: List<AsksBidsBook>? = null,
-    val bids: List<AsksBidsBook>? = null,
-    val sequence: String? = null,
-    val updated_at: String? = null
+    val asks: List<AskBid>,
+    val bids: List<AskBid>,
+    val sequence: String,
+    val updated_at: String
 )
+
+fun OrderBook.toOrderBookEntity(book:String): OrderBookEntity {
+    return OrderBookEntity(
+        book = book,
+        sequence = sequence,
+        updated_at = updated_at
+    )
+}

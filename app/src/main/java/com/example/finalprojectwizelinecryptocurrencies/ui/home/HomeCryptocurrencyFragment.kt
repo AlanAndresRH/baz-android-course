@@ -12,7 +12,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.FragmentHomeCryptocurrencyBinding
@@ -30,17 +29,11 @@ class HomeCryptocurrencyFragment : Fragment() {
     private val homeViewModel by viewModels<HomeViewModel>()
     private val adtHome: CryptocurrencyAdapter by lazy {
         CryptocurrencyAdapter {
-            val book = it.book
-            val action =
+            findNavController().navigate(
                 HomeCryptocurrencyFragmentDirections.actionHomeCryptocurrencyFragmentToDetailCryptocurrencyFragment(
-                    book ?: ""
+                    it.book ?: ""
                 )
-            findNavController().navigate(action)
-
-            navOptions {
-                launchSingleTop = true
-                restoreState = true
-            }
+            )
         }
     }
 
@@ -74,7 +67,7 @@ class HomeCryptocurrencyFragment : Fragment() {
                         Snackbar.make(binding.root, "${uiState.errorMsg}", Snackbar.LENGTH_SHORT)
                             .show()
 
-                    binding.containerProgress.isVisible = uiState.isLoading
+                    binding.containerProgressBar.container.isVisible = uiState.isLoading
                 }
             }
         }

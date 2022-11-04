@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.FragmentDetailCryptocurrencyBinding
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.adapters.AsksBidsAdapter
 import com.example.finalprojectwizelinecryptocurrencies.ui.detail.viewModel.DetailViewModel
@@ -42,9 +41,8 @@ class DetailCryptocurrencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val book = args.book
-        detailViewModel.getDetail(book)
-        detailViewModel.getOrderBook(book)
+        detailViewModel.getDetail(args.book)
+        detailViewModel.getOrderBook(args.book)
 
         binding.toolbarDetail.setNavigationOnClickListener {
             findNavController().popBackStack()
@@ -80,7 +78,7 @@ class DetailCryptocurrencyFragment : Fragment() {
                         tvHigh.text = uiState.book.high
                         tvVolume.text = uiState.book.volume
                         tvCreatedAt.text = uiState.book.createdAt
-                        containerProgress.isVisible = uiState.isLoading
+                        containerProgressBar.container.isVisible = uiState.isLoading
                     }
                 }
             }

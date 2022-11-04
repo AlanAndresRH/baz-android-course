@@ -12,6 +12,8 @@
 
         <action
             android:id="@+id/action_homeCryptocurrencyFragment_to_detailCryptocurrencyFragment"
+            app:launchSingleTop="true"
+            app:restoreState="true"
             app:destination="@id/detailCryptocurrencyFragment" />
 
     </fragment>
@@ -24,7 +26,6 @@
 
         <argument
             android:name="book"
-            android:defaultValue=""
             app:argType="string" />
 
         <action

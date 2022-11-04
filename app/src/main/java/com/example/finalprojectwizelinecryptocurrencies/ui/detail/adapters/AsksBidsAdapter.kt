@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.ItemAsksBidsBinding
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.AsksBidsBook
+import com.example.finalprojectwizelinecryptocurrencies.dominian.model.AskBid
 
-class AsksBidsAdapter : ListAdapter<AsksBidsBook, AsksBidsAdapter.ViewHolder>(AsksDiffCallback) {
+class AsksBidsAdapter : ListAdapter<AskBid, AsksBidsAdapter.ViewHolder>(AsksDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_asks_bids, parent, false)
@@ -31,12 +31,12 @@ class AsksBidsAdapter : ListAdapter<AsksBidsBook, AsksBidsAdapter.ViewHolder>(As
         val binding = ItemAsksBidsBinding.bind(view)
     }
 
-    object AsksDiffCallback : DiffUtil.ItemCallback<AsksBidsBook>() {
-        override fun areItemsTheSame(oldItem: AsksBidsBook, newItem: AsksBidsBook): Boolean {
+    object AsksDiffCallback : DiffUtil.ItemCallback<AskBid>() {
+        override fun areItemsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {
             return oldItem.book == newItem.book
         }
 
-        override fun areContentsTheSame(oldItem: AsksBidsBook, newItem: AsksBidsBook): Boolean {
+        override fun areContentsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {
             return oldItem.book == newItem.book
         }
     }

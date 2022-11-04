@@ -16,11 +16,11 @@ fun BooksDto.toListBooks(): List<Book> {
         val bookSplit = entries.book?.split("_")
 
         Book(
-            book = entries.book,
+            book = entries.book ?: "Unknown",
             nameCrypto = NAME_BOOK[bookSplit?.get(0)] ?: "Unknown",
-            image = ICON_BOOK[bookSplit?.get(0)] ?: R.drawable.ic_btc,
-            minimum_price = entries.minimum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN"),
-            maximum_price = entries.maximum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN")
+            image = ICON_BOOK[bookSplit?.get(0)] ?: R.drawable.ic_coin_error,
+            minimum_price = entries.minimum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN") ?: "$ 0.00",
+            maximum_price = entries.maximum_price?.formatCurrency(bookSplit?.get(1) ?: "MXN") ?: "0.00"
         )
     }
 
