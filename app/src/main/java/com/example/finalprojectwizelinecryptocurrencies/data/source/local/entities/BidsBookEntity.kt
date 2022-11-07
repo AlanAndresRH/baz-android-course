@@ -15,10 +15,9 @@ data class BidsBookEntity(
     val price: String? = null
 )
 
-fun BidsBookEntity.toAskBidBook(): AskBid {
-    return AskBid(
+fun BidsBookEntity.toAskBid(): AskBid =
+    AskBid(
         amount = amount ?: "0.00",
         book = book,
         price = price ?: "0.0"
     )
-}

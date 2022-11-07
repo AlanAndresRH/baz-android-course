@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.repositories
 
-import com.example.finalprojectwizelinecryptocurrencies.data.source.CryptocurrencyApi
+import com.example.finalprojectwizelinecryptocurrencies.data.source.remote.CryptocurrencyApi
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDetailDao
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDao
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.OrderBookDao
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class BookRepositoryImpl @Inject constructor(
+class CryptocurrencyRepositoryImpl @Inject constructor(
     private val api: CryptocurrencyApi,
     private val bookDao: BookDao,
     private val bookDetailDao: BookDetailDao,
@@ -27,10 +27,10 @@ class BookRepositoryImpl @Inject constructor(
             val cryptocurrencyEntities = cryptocurrency.map {
                 it.toBookEntity()
             }
-            bookDao.insertCryptocurrencies(cryptocurrencyEntities)
+            bookDao.insertBookEntity(cryptocurrencyEntities)
             cryptocurrency
         }.recoverCatching {
-            bookDao.getCryptocurrencies().map {
+            bookDao.getBook().map {
                 it.toBook()
             }
         }
@@ -55,8 +55,12 @@ class BookRepositoryImpl @Inject constructor(
                 val orderBookEntity = orderBook.toOrderBookEntity(book)
 
                 orderBookDao.insertOrderBookEntity(orderBookEntity)
-                orderBookDao.insertAsksEntity(orderBook.asks.map { it.toAsksBookEntity() })
-                orderBookDao.insertBidsEntity(orderBook.bids.map { it.toBidsBookEntity() })
+
+                if (orderBook.asks.size > (orderBookDao.getAskBook(book)?.size ?: 0))
+                    orderBookDao.insertAsksEntity(orderBook.asks.map { it.toAsksBookEntity() })
+
+                if (orderBook.bids.size > (orderBookDao.getBidBook(book)?.size ?: 0))
+                    orderBookDao.insertBidsEntity(orderBook.bids.map { it.toBidsBookEntity() })
                 orderBook
             }.recoverCatching {
                 val orderBook = orderBookDao.getOrderBook(book)
@@ -69,8 +73,8 @@ class BookRepositoryImpl @Inject constructor(
                     ?: throw Exception("No se encotro en order book con el parametro $book")
 
                 OrderBook(
-                    asks = askBook.map { it.toAskBidBook() },
-                    bids = bidsBook.map { it.toAskBidBook() },
+                    asks = askBook.map { it.toAskBid() },
+                    bids = bidsBook.map { it.toAskBid() },
                     sequence = orderBook.sequence ?: "",
                     updated_at = orderBook.updated_at ?: ""
                 )

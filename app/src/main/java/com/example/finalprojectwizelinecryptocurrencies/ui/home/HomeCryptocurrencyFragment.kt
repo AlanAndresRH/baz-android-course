@@ -31,7 +31,7 @@ class HomeCryptocurrencyFragment : Fragment() {
         CryptocurrencyAdapter {
             findNavController().navigate(
                 HomeCryptocurrencyFragmentDirections.actionHomeCryptocurrencyFragmentToDetailCryptocurrencyFragment(
-                    it.book ?: ""
+                    it.book
                 )
             )
         }
@@ -53,7 +53,7 @@ class HomeCryptocurrencyFragment : Fragment() {
         setupMenu()
 
         binding.rvCryptocurrency.apply {
-            hasFixedSize()
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             adapter = adtHome
         }

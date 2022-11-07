@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.di
 
-import com.example.finalprojectwizelinecryptocurrencies.data.repositories.BookRepositoryImpl
+import com.example.finalprojectwizelinecryptocurrencies.data.repositories.CryptocurrencyRepositoryImpl
 import com.example.finalprojectwizelinecryptocurrencies.dominian.repositories.CryptocurrencyRepository
 import dagger.Binds
 import dagger.Module
@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 abstract class RepositoriesModule {
     @Binds
-    abstract fun bindCryptocurrencyRepository(impl: BookRepositoryImpl) : CryptocurrencyRepository
+    abstract fun bindCryptocurrencyRepository(impl: CryptocurrencyRepositoryImpl) : CryptocurrencyRepository
 }

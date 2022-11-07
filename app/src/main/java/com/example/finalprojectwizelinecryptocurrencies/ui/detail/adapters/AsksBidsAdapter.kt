@@ -33,7 +33,7 @@ class AsksBidsAdapter : ListAdapter<AskBid, AsksBidsAdapter.ViewHolder>(AsksDiff
 
     object AsksDiffCallback : DiffUtil.ItemCallback<AskBid>() {
         override fun areItemsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {
-            return oldItem.book == newItem.book
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {

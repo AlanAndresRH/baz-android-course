@@ -5,7 +5,7 @@ import com.example.finalprojectwizelinecryptocurrencies.dominian.model.BookDetai
 import com.example.finalprojectwizelinecryptocurrencies.dominian.model.OrderBook
 
 data class DetailState(
-    val book: BookDetail = BookDetail("", "", "", "", "", R.drawable.ic_coin_error),
+    val book: BookDetail = BookDetail("", "", "", "", "", R.drawable.ic_coin_unknown),
     val orderBook: OrderBook = OrderBook(emptyList(), emptyList(), "", ""),
     val isLoading: Boolean = false,
     val errorMsg: String? = null,

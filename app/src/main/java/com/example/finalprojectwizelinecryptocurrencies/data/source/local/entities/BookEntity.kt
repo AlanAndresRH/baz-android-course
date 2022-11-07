@@ -19,7 +19,7 @@ fun BookEntity.toBook(): Book =
     Book(
         book = book,
         nameCrypto = nameCrypto ?: "Unknown",
-        image = image ?: R.drawable.ic_coin_error,
+        image = image ?: R.drawable.ic_coin_unknown,
         maximum_price = maximum_price ?: "$ 0.00",
         minimum_price = minimum_price ?: "$ 0.00"
     )

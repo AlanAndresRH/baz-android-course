@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.source.remote.dto
 
-data class PayloadDetail(
+data class PayloadDetailDto(
     val ask: String? = null,
     val bid: String? = null,
     val book: String? = null,

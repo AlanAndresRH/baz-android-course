@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies.data.source
+package com.example.finalprojectwizelinecryptocurrencies.data.source.remote
 
 import com.example.finalprojectwizelinecryptocurrencies.data.source.remote.dto.BookDetailDto
 import com.example.finalprojectwizelinecryptocurrencies.data.source.remote.dto.BooksDto

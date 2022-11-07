@@ -54,7 +54,7 @@ class DetailCryptocurrencyFragment : Fragment() {
             adapter = askAdapter
         }
         binding.rvBids.apply {
-            hasFixedSize()
+            setHasFixedSize(true)
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = bidsAdapter

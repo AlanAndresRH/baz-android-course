@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.source.remote.dto
 
-data class Payload(
+data class PayloadDto(
     val book: String? = null,
     val default_chart: String? = null,
     val maximum_amount: String? = null,

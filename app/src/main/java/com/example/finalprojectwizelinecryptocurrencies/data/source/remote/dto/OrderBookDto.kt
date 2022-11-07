@@ -5,7 +5,7 @@ import com.example.finalprojectwizelinecryptocurrencies.dominian.model.OrderBook
 import com.example.finalprojectwizelinecryptocurrencies.utils.formatCurrency
 
 data class OrderBookDto(
-    val payload: PayloadOrder,
+    val payload: PayloadOrderDto,
     val success: Boolean
 )
 

@@ -14,7 +14,7 @@ class GetBooksFilterUseCase @Inject constructor(
             KeyFilter.FILTER_MXN -> {
                 books.map { value: List<Book> ->
                     value.filter { crypto ->
-                        crypto.book?.lowercase()?.contains("mxn") == true
+                        crypto.book.lowercase().contains("mxn")
                     }
                 }
             }
