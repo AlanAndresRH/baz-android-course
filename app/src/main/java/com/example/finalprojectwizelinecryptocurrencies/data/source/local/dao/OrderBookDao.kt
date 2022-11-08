@@ -25,6 +25,12 @@ interface OrderBookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsksEntity(asksBookEntity: List<AsksBookEntity>)
 
+    @Query("DELETE FROM asksBookEntity WHERE book = :book")
+    suspend fun deleteAskEntity(book: String)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBidsEntity(bidsBookEntity: List<BidsBookEntity>)
+
+    @Query("DELETE FROM bidsBookEntity WHERE book = :book")
+    suspend fun deleteBidsEntity(book: String)
 }

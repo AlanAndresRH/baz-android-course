@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface CryptocurrencyApi {
 
     @GET("available_books/")
-    suspend fun getBooks(): BooksDto
+    suspend fun getBooks(): BooksDto?
 
     @GET("ticker/")
     suspend fun getDetailBook(

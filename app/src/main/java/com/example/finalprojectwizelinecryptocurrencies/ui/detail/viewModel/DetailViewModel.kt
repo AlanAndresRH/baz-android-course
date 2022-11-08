@@ -1,5 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.ui.detail.viewModel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalprojectwizelinecryptocurrencies.dominian.useCase.GetDetailBookUseCase
@@ -15,19 +16,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val getDetailBookUseCase: GetDetailBookUseCase,
     private val getOrderBookUserCase: GetOrderBookUserCase
 ) : ViewModel() {
-
+    val book = savedStateHandle.get<String>("book") ?: ""
     val state = MutableStateFlow(DetailState(isLoading = true))
 
-    // TODO: Preguntar porque se muestra otra imagen primero y luego ya la verdadera imagen (Solo muestra la verdara imagen si comento estas lineas de código)
-    /*init {
-        getDetail(state.value.book.book ?: "")
-        getOrderBook(state.value.book.book ?: "")
-    }*/
-
-    fun getDetail(book: String) {
+    fun getDetail() {
         state.update {
             it.copy(
                 isLoading = true
@@ -40,7 +36,7 @@ class DetailViewModel @Inject constructor(
                 state.update { state ->
                     state.copy(
                         book = resSuccess,
-                        isLoading = true
+                        isLoading = false
                     )
                 }
             }, {
@@ -62,7 +58,13 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun getOrderBook(book: String) {
+    fun getOrderBook() {
+        state.update {
+            it.copy(
+                isLoading = true
+            )
+        }
+
         viewModelScope.launch {
             val resOrderBook = getOrderBookUserCase(book)
 

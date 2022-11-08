@@ -23,10 +23,11 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
 
     override suspend fun getBooks(): Result<List<Book>> = withContext(Dispatchers.IO) {
         kotlin.runCatching {
-            val cryptocurrency = api.getBooks().toListBooks()
+            val cryptocurrency = api.getBooks()?.toListBooks() ?: emptyList()
             val cryptocurrencyEntities = cryptocurrency.map {
                 it.toBookEntity()
             }
+
             bookDao.insertBookEntity(cryptocurrencyEntities)
             cryptocurrency
         }.recoverCatching {
@@ -55,12 +56,10 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
                 val orderBookEntity = orderBook.toOrderBookEntity(book)
 
                 orderBookDao.insertOrderBookEntity(orderBookEntity)
-
-                if (orderBook.asks.size > (orderBookDao.getAskBook(book)?.size ?: 0))
-                    orderBookDao.insertAsksEntity(orderBook.asks.map { it.toAsksBookEntity() })
-
-                if (orderBook.bids.size > (orderBookDao.getBidBook(book)?.size ?: 0))
-                    orderBookDao.insertBidsEntity(orderBook.bids.map { it.toBidsBookEntity() })
+                orderBookDao.deleteAskEntity(book)
+                orderBookDao.insertAsksEntity(orderBook.asks.map { it.toAsksBookEntity() })
+                orderBookDao.deleteBidsEntity(book)
+                orderBookDao.insertBidsEntity(orderBook.bids.map { it.toBidsBookEntity() })
                 orderBook
             }.recoverCatching {
                 val orderBook = orderBookDao.getOrderBook(book)

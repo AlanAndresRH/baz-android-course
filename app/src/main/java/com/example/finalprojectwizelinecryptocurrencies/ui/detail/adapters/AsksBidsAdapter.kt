@@ -19,11 +19,11 @@ class AsksBidsAdapter : ListAdapter<AskBid, AsksBidsAdapter.ViewHolder>(AsksDiff
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ask = getItem(position)
+        val askBid = getItem(position)
         holder.binding.apply {
-            tvNameBook.text = ask.book
-            tvPriceCryptocurrency.text = ask.price
-            tvAmountCryptocurrency.text = ask.amount
+            tvNameBook.text = askBid.book
+            tvPriceCryptocurrency.text = askBid.price
+            tvAmountCryptocurrency.text = askBid.amount
         }
     }
 
