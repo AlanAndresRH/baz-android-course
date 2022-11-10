@@ -37,6 +37,8 @@ class HomeViewModel @Inject constructor(
                     it.copy(
                         books = resSuccess,
                         keyFilter = key,
+                        showMexico = (key == KeyFilter.FILTER_MXN),
+                        showAllCountry = (key == KeyFilter.NO_FILTER),
                         isLoading = false
                     )
                 }
@@ -53,7 +55,9 @@ class HomeViewModel @Inject constructor(
                     state.update { state ->
                         state.copy(
                             isLoading = false,
-                            errorMsg = errorMsg
+                            errorMsg = errorMsg,
+                            showMexico = (key == KeyFilter.FILTER_MXN),
+                            showAllCountry = (key == KeyFilter.NO_FILTER)
                         )
                     }
                 }

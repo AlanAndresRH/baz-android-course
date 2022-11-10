@@ -4,7 +4,7 @@
     android:id="@+id/container"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#BE8A8A8A">
+    android:background="@color/background_loading">
 
     <ProgressBar
         android:id="@+id/progressBarHome"

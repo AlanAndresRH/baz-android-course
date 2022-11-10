@@ -1,5 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.repositories
 
+import android.util.Log
 import com.example.finalprojectwizelinecryptocurrencies.data.source.remote.CryptocurrencyApi
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDetailDao
 import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDao
@@ -45,6 +46,8 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
             bookDetailDao.insertBookDetail(bookDetailEntities)
             bookDetail
         }.recoverCatching {
+            Log.i("AARH", "${it.cause}")
+            Log.i("AARH", "${bookDetailDao.getBookDetail(book).toBookDetail()}")
             bookDetailDao.getBookDetail(book).toBookDetail()
         }
     }
@@ -63,13 +66,13 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
                 orderBook
             }.recoverCatching {
                 val orderBook = orderBookDao.getOrderBook(book)
-                    ?: throw Exception("No se encotro en order book con el parametro $book")
+                    ?: throw Exception("No se encontró en order book con el parámetro $book")
 
                 val askBook = orderBookDao.getAskBook(book)
-                    ?: throw Exception("No se encotro en order book con el parametro $book")
+                    ?: throw Exception("No se encontró en order book con el parámetro $book")
 
                 val bidsBook = orderBookDao.getBidBook(book)
-                    ?: throw Exception("No se encotro en order book con el parametro $book")
+                    ?: throw Exception("No se encontró en order book con el parámetro $book")
 
                 OrderBook(
                     asks = askBook.map { it.toAskBid() },

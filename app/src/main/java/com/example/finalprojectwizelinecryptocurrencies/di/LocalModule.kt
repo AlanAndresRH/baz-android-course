@@ -23,7 +23,7 @@ object LocalModule {
         Room.databaseBuilder(
             mContext,
             CryptocurrencyDataBase::class.java,
-            "com.example.finalprojectwizelinecryptocurrencies.cyptocurrecy_database"
+            "com.example.finalprojectwizelinecryptocurrencies.cryptocurrency_database"
         ).build()
 
     @Provides

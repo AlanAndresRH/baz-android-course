@@ -7,5 +7,7 @@ data class HomeState(
     val books: List<Book> = emptyList(),
     val isLoading: Boolean = false,
     val keyFilter: KeyFilter = KeyFilter.FILTER_MXN,
+    val showMexico: Boolean = false,
+    val showAllCountry: Boolean = false,
     val errorMsg: String? = null
 )

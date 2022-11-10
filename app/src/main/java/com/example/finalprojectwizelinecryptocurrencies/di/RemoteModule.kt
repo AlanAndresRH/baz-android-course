@@ -37,7 +37,10 @@ object RemoteModule {
 
     @Provides
     @Singleton
-    fun provideClient(interceptor: HttpLoggingInterceptor,headerInterceptor: Interceptor): OkHttpClient =
+    fun provideClient(
+        interceptor: HttpLoggingInterceptor,
+        headerInterceptor: Interceptor
+    ): OkHttpClient =
         OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(headerInterceptor).build()
 
     @Provides

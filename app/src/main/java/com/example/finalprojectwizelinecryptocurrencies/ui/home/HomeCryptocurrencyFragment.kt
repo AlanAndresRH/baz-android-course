@@ -26,6 +26,9 @@ import kotlinx.coroutines.launch
 class HomeCryptocurrencyFragment : Fragment() {
     private lateinit var binding: FragmentHomeCryptocurrencyBinding
 
+    private var showMexicoFilter = false
+    private var showAllCountryFilter = false
+
     private val homeViewModel by viewModels<HomeViewModel>()
     private val adtHome: CryptocurrencyAdapter by lazy {
         CryptocurrencyAdapter {
@@ -62,6 +65,8 @@ class HomeCryptocurrencyFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.state.collect { uiState ->
                     adtHome.submitList(uiState.books)
+                    showMexicoFilter = uiState.showMexico
+                    showAllCountryFilter = uiState.showAllCountry
 
                     if (!uiState.errorMsg.isNullOrEmpty())
                         Snackbar.make(binding.root, "${uiState.errorMsg}", Snackbar.LENGTH_SHORT)
@@ -78,6 +83,10 @@ class HomeCryptocurrencyFragment : Fragment() {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_home_sort_list, menu)
+            }
+
+                override fun onPrepareMenu(menu: Menu) {
+                super.onPrepareMenu(menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

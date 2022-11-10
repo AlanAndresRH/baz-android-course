@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/detailCryptocurrencyFragment"
         android:name="com.example.finalprojectwizelinecryptocurrencies.ui.detail.DetailCryptocurrencyFragment"
-        android:label="fragment_detail_cryptocurrecy"
+        android:label="fragment_detail_cryptocurrency"
         tools:layout="@layout/fragment_detail_cryptocurrency">
 
         <argument
