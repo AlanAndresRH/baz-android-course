@@ -57,23 +57,30 @@ class DetailCryptocurrencyFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 detailViewModel.state.collect { uiState ->
                     binding.apply {
+                        lytError.container.isVisible = uiState.showErrorData
+                        containerDataDetail.isVisible = !uiState.showErrorData
+
                         Glide.with(requireContext())
-                            .load(uiState.book.image)
+                            .load(uiState.book?.image)
                             .centerCrop()
                             .into(imgCryptoCurrencies)
 
-                        tvNameCryptocurrency.text = uiState.book.nameCrypto
-                        tvNameBook.text = uiState.book.book
-                        tvHigh.text = uiState.book.high
-                        tvVolume.text = uiState.book.volume
-                        tvCreatedAt.text = uiState.book.createdAt
-                        containerProgressBar.container.isVisible = uiState.isLoading
+                        tvNameCryptocurrency.text = uiState.book?.nameCrypto
+                        tvNameBook.text = uiState.book?.book
+                        tvHigh.text = uiState.book?.high
+                        tvVolume.text = uiState.book?.volume
+                        tvCreatedAt.text = uiState.book?.createdAt
+                        lytProgressBar.container.isVisible = uiState.isLoading
 
-                        askAdapter.submitList(uiState.orderBook.asks)
-                        bidsAdapter.submitList(uiState.orderBook.bids)
+                        askAdapter.submitList(uiState.orderBook?.asks)
+                        bidsAdapter.submitList(uiState.orderBook?.bids)
+
+                        lytError.btnRetry.setOnClickListener {
+                            detailViewModel.getDetail()
+                            detailViewModel.getOrderBook()
+                        }
                     }
                 }
             }

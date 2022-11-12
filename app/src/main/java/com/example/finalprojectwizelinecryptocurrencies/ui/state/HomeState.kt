@@ -9,5 +9,6 @@ data class HomeState(
     val keyFilter: KeyFilter = KeyFilter.FILTER_MXN,
     val showMexico: Boolean = false,
     val showAllCountry: Boolean = false,
-    val errorMsg: String? = null
+    val errorMsg: String? = null,
+    val showErrorData: Boolean = false
 )

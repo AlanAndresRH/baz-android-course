@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.dominian.model
 
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.entities.BookEntity
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.BookEntity
 
 data class Book(
     val book: String,

@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:backgroundTint="#1AFFFFFF"
+    android:backgroundTint="@color/background_item_ask_bids"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp">
 

@@ -2,10 +2,10 @@ package com.example.finalprojectwizelinecryptocurrencies.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dababase.CryptocurrencyDataBase
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDetailDao
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.BookDao
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.dao.OrderBookDao
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.dababase.CryptocurrencyDataBase
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.dao.BookDetailDao
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.dao.BookDao
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.dao.OrderBookDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

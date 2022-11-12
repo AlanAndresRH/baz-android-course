@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="UnusedAttribute">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarDetail"
@@ -20,7 +22,7 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="40dp"
-        android:backgroundTint="#372196F3"
+        android:backgroundTint="@color/app_color"
         app:cardCornerRadius="32dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,9 +30,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarDetail">
 
+        <include
+            android:id="@+id/lytError"
+            layout="@layout/layout_no_data" />
+
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/containerDataDetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -265,7 +272,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <include
-        android:id="@+id/containerProgressBar"
+        android:id="@+id/lytProgressBar"
         layout="@layout/layout_progress_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

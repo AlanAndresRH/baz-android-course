@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeCryptocurrencyFragment">
+    tools:context=".ui.home.HomeCryptocurrencyFragment"
+    tools:ignore="UnusedAttribute">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarHome"
@@ -30,5 +31,9 @@
     <include
         android:id="@+id/containerProgressBar"
         layout="@layout/layout_progress_bar" />
+
+    <include
+        android:id="@+id/lytError"
+        layout="@layout/layout_no_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

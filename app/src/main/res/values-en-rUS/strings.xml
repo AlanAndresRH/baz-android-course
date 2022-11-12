@@ -14,4 +14,9 @@
     <string name="filter_menu">Filter</string>
     <string name="lbl_asks">Asks:</string>
     <string name="lbl_bids">Bids:</string>
+    <string name="offline">You are currently offline.</string>
+    <string name="connection_restored">Internet connection restored</string>
+    <string name="connection_error">A connection error occurred</string>
+    <string name="check_internet_connection">Could not get the information check your internet connection</string>
+    <string name="btn_retry">Retry</string>
 </resources>

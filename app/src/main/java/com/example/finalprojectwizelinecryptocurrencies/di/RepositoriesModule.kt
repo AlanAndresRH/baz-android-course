@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.di
 
-import com.example.finalprojectwizelinecryptocurrencies.data.repositories.CryptocurrencyRepositoryImpl
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.repositories.CryptocurrencyRepositoryImpl
 import com.example.finalprojectwizelinecryptocurrencies.dominian.repositories.CryptocurrencyRepository
 import dagger.Binds
 import dagger.Module

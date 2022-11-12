@@ -72,7 +72,11 @@ class HomeCryptocurrencyFragment : Fragment() {
                         Snackbar.make(binding.root, "${uiState.errorMsg}", Snackbar.LENGTH_SHORT)
                             .show()
 
+                    binding.lytError.container.isVisible = uiState.showErrorData
                     binding.containerProgressBar.container.isVisible = uiState.isLoading
+                    binding.lytError.btnRetry.setOnClickListener {
+                        homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
+                    }
                 }
             }
         }
@@ -83,10 +87,6 @@ class HomeCryptocurrencyFragment : Fragment() {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_home_sort_list, menu)
-            }
-
-                override fun onPrepareMenu(menu: Menu) {
-                super.onPrepareMenu(menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

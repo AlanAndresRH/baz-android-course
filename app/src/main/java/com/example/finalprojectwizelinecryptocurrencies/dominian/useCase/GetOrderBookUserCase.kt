@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetOrderBookUserCase @Inject constructor(
     private var repository: CryptocurrencyRepository
 ) {
-    suspend operator fun invoke(book: String): Result<OrderBook> {
+    suspend operator fun invoke(book: String): Result<OrderBook?> {
         return repository.getOrderBook(book)
     }
 }

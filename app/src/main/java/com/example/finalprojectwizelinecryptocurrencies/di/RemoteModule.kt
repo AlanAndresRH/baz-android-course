@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.di
 
-import com.example.finalprojectwizelinecryptocurrencies.data.source.remote.CryptocurrencyApi
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.CryptocurrencyApi
 import com.example.finalprojectwizelinecryptocurrencies.utils.BASE_URL
 import dagger.Module
 import dagger.Provides

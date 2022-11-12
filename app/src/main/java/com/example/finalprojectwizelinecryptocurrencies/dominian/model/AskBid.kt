@@ -1,7 +1,7 @@
 package com.example.finalprojectwizelinecryptocurrencies.dominian.model
 
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.entities.AsksBookEntity
-import com.example.finalprojectwizelinecryptocurrencies.data.source.local.entities.BidsBookEntity
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.AsksBookEntity
+import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.BidsBookEntity
 
 data class AskBid(
     val amount: String,

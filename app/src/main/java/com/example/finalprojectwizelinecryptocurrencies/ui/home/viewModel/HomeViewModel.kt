@@ -39,7 +39,8 @@ class HomeViewModel @Inject constructor(
                         keyFilter = key,
                         showMexico = (key == KeyFilter.FILTER_MXN),
                         showAllCountry = (key == KeyFilter.NO_FILTER),
-                        isLoading = false
+                        isLoading = false,
+                        showErrorData = (resSuccess.isEmpty())
                     )
                 }
             },
@@ -57,7 +58,8 @@ class HomeViewModel @Inject constructor(
                             isLoading = false,
                             errorMsg = errorMsg,
                             showMexico = (key == KeyFilter.FILTER_MXN),
-                            showAllCountry = (key == KeyFilter.NO_FILTER)
+                            showAllCountry = (key == KeyFilter.NO_FILTER),
+                            showErrorData = true
                         )
                     }
                 }
