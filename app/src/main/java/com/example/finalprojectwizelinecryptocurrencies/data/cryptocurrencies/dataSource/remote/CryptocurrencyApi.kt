@@ -3,6 +3,7 @@ package com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.d
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.BookDetailDto
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.BooksDto
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.OrderBookDto
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -20,4 +21,7 @@ interface CryptocurrencyApi {
     suspend fun getOrderBook(
         @Query("book") book: String
     ): OrderBookDto
+
+    @GET("available_books/")
+    fun getBooksRxJava(): Single<BooksDto>
 }

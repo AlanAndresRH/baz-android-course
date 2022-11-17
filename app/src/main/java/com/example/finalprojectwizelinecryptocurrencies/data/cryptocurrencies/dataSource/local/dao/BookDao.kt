@@ -14,4 +14,7 @@ interface BookDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBookEntity(cryptocurrencyList: List<BookEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertBookEntity2(cryptocurrencyList: List<BookEntity>)
 }

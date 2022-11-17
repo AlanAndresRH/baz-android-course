@@ -3,8 +3,8 @@ package com.example.finalprojectwizelinecryptocurrencies.ui.detail.viewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalprojectwizelinecryptocurrencies.dominian.useCase.GetDetailBookUseCase
-import com.example.finalprojectwizelinecryptocurrencies.dominian.useCase.GetOrderBookUserCase
+import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetDetailBookUseCase
+import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetOrderBookUserCase
 import com.example.finalprojectwizelinecryptocurrencies.ui.state.DetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -69,15 +69,16 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             val resOrderBook = getOrderBookUserCase(book)
 
-            resOrderBook.fold({ resSuccess ->
-                state.update { state ->
-                    state.copy(
-                        orderBook = resSuccess,
-                        isLoading = false,
-                        showErrorData = (resSuccess == null)
-                    )
-                }
-            }, {
+            resOrderBook.fold(
+                { resSuccess ->
+                    state.update { state ->
+                        state.copy(
+                            orderBook = resSuccess,
+                            isLoading = false,
+                            showErrorData = (resSuccess == null)
+                        )
+                    }
+                }, {
                 val errorMsg = when (it) {
                     is HttpException -> "Error de conexión"
 

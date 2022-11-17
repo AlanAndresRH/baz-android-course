@@ -24,7 +24,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeCryptocurrencyFragment : Fragment() {
-    private lateinit var binding: FragmentHomeCryptocurrencyBinding
+    private var _binding: FragmentHomeCryptocurrencyBinding? = null
+    private val binding: FragmentHomeCryptocurrencyBinding get() = _binding!!
 
     private var showMexicoFilter = false
     private var showAllCountryFilter = false
@@ -32,6 +33,7 @@ class HomeCryptocurrencyFragment : Fragment() {
     private val homeViewModel by viewModels<HomeViewModel>()
     private val adtHome: CryptocurrencyAdapter by lazy {
         CryptocurrencyAdapter {
+
             findNavController().navigate(
                 HomeCryptocurrencyFragmentDirections.actionHomeCryptocurrencyFragmentToDetailCryptocurrencyFragment(
                     it.book
@@ -41,10 +43,11 @@ class HomeCryptocurrencyFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeCryptocurrencyBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeCryptocurrencyBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -75,7 +78,7 @@ class HomeCryptocurrencyFragment : Fragment() {
                     binding.lytError.container.isVisible = uiState.showErrorData
                     binding.containerProgressBar.container.isVisible = uiState.isLoading
                     binding.lytError.btnRetry.setOnClickListener {
-                        homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
+                        homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
                     }
                 }
             }
@@ -84,26 +87,36 @@ class HomeCryptocurrencyFragment : Fragment() {
 
     private fun setupMenu() {
         val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_home_sort_list, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.filter_list_mxn -> {
-                        homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
-                        true
-                    }
-
-                    R.id.filter_list_all -> {
-                        homeViewModel.changeFilterKey(KeyFilter.NO_FILTER)
-                        true
-                    }
-
-                    else -> true
+        menuHost.addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu_home_sort_list, menu)
                 }
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    return when (menuItem.itemId) {
+                        R.id.filter_list_mxn -> {
+                            //homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
+                            homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
+                            true
+                        }
+
+                        R.id.filter_list_all -> {
+                            //homeViewModel.changeFilterKey(KeyFilter.NO_FILTER)
+                            homeViewModel.changeFilterKeyRxJava(KeyFilter.NO_FILTER)
+                            true
+                        }
+
+                        else -> true
+                    }
+                }
+            },
+            viewLifecycleOwner, Lifecycle.State.RESUMED
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

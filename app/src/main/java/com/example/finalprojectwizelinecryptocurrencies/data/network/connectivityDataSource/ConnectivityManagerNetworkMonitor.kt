@@ -11,15 +11,17 @@ import android.os.Build.VERSION_CODES
 import androidx.core.content.getSystemService
 import com.example.finalprojectwizelinecryptocurrencies.data.network.NetworkMonitor
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
+import javax.inject.Inject
 
 class ConnectivityManagerNetworkMonitor @Inject constructor(
     @ApplicationContext private val context: Context
 ) : NetworkMonitor {
+    private val connectivityManager = context.getSystemService<ConnectivityManager>()
+
     override val isOnline: Flow<Boolean> = callbackFlow {
         val callback = object : NetworkCallback() {
             override fun onAvailable(network: Network) {
@@ -30,8 +32,6 @@ class ConnectivityManagerNetworkMonitor @Inject constructor(
                 channel.trySend(false)
             }
         }
-
-        val connectivityManager = context.getSystemService<ConnectivityManager>()
 
         connectivityManager?.registerNetworkCallback(
             Builder()
@@ -59,5 +59,9 @@ class ConnectivityManagerNetworkMonitor @Inject constructor(
                     ?: false
             else -> activeNetworkInfo?.isConnected ?: false
         }
+    }
+
+    override fun isOnline(): Boolean {
+        return connectivityManager.isCurrentlyConnected()
     }
 }

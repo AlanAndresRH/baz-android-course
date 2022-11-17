@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NavHostViewModel @Inject constructor(
     networkMonitor: NetworkMonitor
-): ViewModel() {
+) : ViewModel() {
 
     val isOnline = networkMonitor.isOnline.dropWhile { it }.distinctUntilChanged()
 }

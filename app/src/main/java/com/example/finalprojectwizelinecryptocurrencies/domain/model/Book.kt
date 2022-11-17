@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies.dominian.model
+package com.example.finalprojectwizelinecryptocurrencies.domain.model
 
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.BookEntity
 

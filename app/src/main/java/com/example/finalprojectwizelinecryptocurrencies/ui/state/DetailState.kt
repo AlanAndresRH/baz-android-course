@@ -1,7 +1,7 @@
 package com.example.finalprojectwizelinecryptocurrencies.ui.state
 
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.BookDetail
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.OrderBook
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.BookDetail
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.OrderBook
 
 data class DetailState(
     val book: BookDetail? = null,

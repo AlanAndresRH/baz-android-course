@@ -1,7 +1,7 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto
 
 import com.example.finalprojectwizelinecryptocurrencies.R
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.Book
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.Book
 import com.example.finalprojectwizelinecryptocurrencies.utils.ICON_BOOK
 import com.example.finalprojectwizelinecryptocurrencies.utils.NAME_BOOK
 import com.example.finalprojectwizelinecryptocurrencies.utils.formatCurrency

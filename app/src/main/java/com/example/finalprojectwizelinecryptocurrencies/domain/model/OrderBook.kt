@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies.dominian.model
+package com.example.finalprojectwizelinecryptocurrencies.domain.model
 
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.OrderBookEntity
 
@@ -9,7 +9,7 @@ data class OrderBook(
     val updated_at: String
 )
 
-fun OrderBook.toOrderBookEntity(book:String): OrderBookEntity {
+fun OrderBook.toOrderBookEntity(book: String): OrderBookEntity {
     return OrderBookEntity(
         book = book,
         sequence = sequence,

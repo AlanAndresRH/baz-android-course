@@ -1,6 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.ui.state
 
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.Book
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.Book
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 
 data class HomeState(

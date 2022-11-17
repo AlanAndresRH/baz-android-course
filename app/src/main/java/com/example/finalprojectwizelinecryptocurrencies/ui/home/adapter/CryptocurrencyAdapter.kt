@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.ItemCryptocurrenciesBinding
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.Book
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.Book
 
 class CryptocurrencyAdapter(private val onClick: (Book) -> Unit) :
     ListAdapter<Book, CryptocurrencyAdapter.ViewHolder>(CryptocurrencyDiffCallback) {
@@ -43,11 +43,11 @@ class CryptocurrencyAdapter(private val onClick: (Book) -> Unit) :
 
     object CryptocurrencyDiffCallback : DiffUtil.ItemCallback<Book>() {
         override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem== newItem
+            return oldItem.book == newItem.book
         }
 
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.book == newItem.book
+            return oldItem == newItem
         }
     }
 }

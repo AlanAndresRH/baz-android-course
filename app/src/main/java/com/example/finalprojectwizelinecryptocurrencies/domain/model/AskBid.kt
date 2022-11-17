@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies.dominian.model
+package com.example.finalprojectwizelinecryptocurrencies.domain.model
 
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.AsksBookEntity
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.BidsBookEntity
@@ -17,7 +17,7 @@ fun AskBid.toAsksBookEntity(): AsksBookEntity {
     )
 }
 
-fun AskBid.toBidsBookEntity() : BidsBookEntity {
+fun AskBid.toBidsBookEntity(): BidsBookEntity {
     return BidsBookEntity(
         amount = amount,
         book = this.book,

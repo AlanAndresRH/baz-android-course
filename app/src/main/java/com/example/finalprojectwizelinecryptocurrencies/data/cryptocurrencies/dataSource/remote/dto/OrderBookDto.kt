@@ -1,7 +1,7 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto
 
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.AskBid
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.OrderBook
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.AskBid
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.OrderBook
 import com.example.finalprojectwizelinecryptocurrencies.utils.formatCurrency
 
 data class OrderBookDto(

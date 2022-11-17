@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalprojectwizelinecryptocurrencies.R
 import com.example.finalprojectwizelinecryptocurrencies.databinding.ItemAsksBidsBinding
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.AskBid
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.AskBid
 
 class AsksBidsAdapter : ListAdapter<AskBid, AsksBidsAdapter.ViewHolder>(AsksDiffCallback) {
 
@@ -33,11 +33,11 @@ class AsksBidsAdapter : ListAdapter<AskBid, AsksBidsAdapter.ViewHolder>(AsksDiff
 
     object AsksDiffCallback : DiffUtil.ItemCallback<AskBid>() {
         override fun areItemsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {
-            return oldItem == newItem
+            return oldItem.book == newItem.book
         }
 
         override fun areContentsTheSame(oldItem: AskBid, newItem: AskBid): Boolean {
-            return oldItem.book == newItem.book
+            return oldItem == newItem
         }
     }
 }

@@ -3,7 +3,7 @@ package com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.d
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.finalprojectwizelinecryptocurrencies.R
-import com.example.finalprojectwizelinecryptocurrencies.dominian.model.BookDetail
+import com.example.finalprojectwizelinecryptocurrencies.domain.model.BookDetail
 
 @Entity
 data class BookDetailEntity(

@@ -15,6 +15,9 @@ class BookLocalDataSource @Inject constructor(
     suspend fun insertBookEntity(cryptocurrencyList: List<BookEntity>) =
         bookDao.insertBookEntity(cryptocurrencyList)
 
+    fun insertBookEntity2(cryptocurrencyList: List<BookEntity>) =
+        bookDao.insertBookEntity2(cryptocurrencyList)
+
     suspend fun getBook(): List<BookEntity> = bookDao.getBook()
 
     suspend fun insertBookDetail(bookDetail: BookDetailEntity) =
