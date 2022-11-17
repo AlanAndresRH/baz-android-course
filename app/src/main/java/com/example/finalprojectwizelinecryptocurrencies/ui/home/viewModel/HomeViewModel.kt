@@ -22,11 +22,11 @@ class HomeViewModel @Inject constructor(
     val state: StateFlow<HomeState> = _state
 
     init {
-        //changeFilterKey(KeyFilter.FILTER_MXN)
+        // changeFilterKey(KeyFilter.FILTER_MXN)
         changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
     }
 
-    /*fun changeFilterKey(key: KeyFilter) {
+    fun changeFilterKey(key: KeyFilter) {
         _state.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
                 }
             )
         }
-    }*/
+    }
 
     fun changeFilterKeyRxJava(key: KeyFilter) {
         _state.update { it.copy(isLoading = true) }

@@ -96,13 +96,13 @@ class HomeCryptocurrencyFragment : Fragment() {
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     return when (menuItem.itemId) {
                         R.id.filter_list_mxn -> {
-                            //homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
+                            // homeViewModel.changeFilterKey(KeyFilter.FILTER_MXN)
                             homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
                             true
                         }
 
                         R.id.filter_list_all -> {
-                            //homeViewModel.changeFilterKey(KeyFilter.NO_FILTER)
+                            // homeViewModel.changeFilterKey(KeyFilter.NO_FILTER)
                             homeViewModel.changeFilterKeyRxJava(KeyFilter.NO_FILTER)
                             true
                         }
