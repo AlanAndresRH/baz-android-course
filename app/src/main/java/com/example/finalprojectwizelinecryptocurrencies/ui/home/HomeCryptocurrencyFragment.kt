@@ -74,8 +74,8 @@ class HomeCryptocurrencyFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.state.collect { uiState ->
                     adtHome.submitList(uiState.books)
-                    showMexicoFilter = uiState.showMexico
-                    showAllCountryFilter = uiState.showAllCountry
+                    showMexicoFilter = uiState.showMexico()
+                    showAllCountryFilter = uiState.showAllCountry()
 
                     binding.apply {
                         if (!uiState.errorMsg.isNullOrEmpty())
@@ -86,7 +86,7 @@ class HomeCryptocurrencyFragment : Fragment() {
                             )
                                 .show()
 
-                        lytError.container.isVisible = uiState.showErrorData
+                        lytError.container.isVisible = uiState.showErrorData()
                         containerLoading.isVisible = uiState.isLoading
                         rvCryptocurrency.isVisible = !uiState.isLoading
                         lytError.btnRetry.setOnClickListener {
@@ -124,7 +124,7 @@ class HomeCryptocurrencyFragment : Fragment() {
                     }
                 }
             },
-            viewLifecycleOwner, Lifecycle.State.RESUMED
+            viewLifecycleOwner, Lifecycle.State.STARTED
         )
     }
 

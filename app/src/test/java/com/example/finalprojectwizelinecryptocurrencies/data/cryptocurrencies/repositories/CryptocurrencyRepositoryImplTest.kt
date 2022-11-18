@@ -10,6 +10,7 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -43,7 +44,8 @@ class CryptocurrencyRepositoryImplTest {
                 "10",
                 "tradingview"
             )
-        ), true
+        ),
+        true
     )
     private val bookDetailFake = BookDetailDto(
         PayloadDetailDto(
@@ -92,132 +94,132 @@ class CryptocurrencyRepositoryImplTest {
                 bookRemoteDataSource,
                 bookLocalDataSource,
                 networkMonitor,
-                Dispatchers.Unconfined
+                Dispatchers.Unconfined,
+                Schedulers.io()
             )
     }
 
     @Test
     fun getBooks_when_networkIsAvailable_return_remoteData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns true
         coEvery { bookRemoteDataSource.getBooks() } returns bookListFake
 
-        //When
+        // When
         val result = repositoryImpl.getBooks()
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(bookListFake.toListBooks()))
     }
 
     @Test
     fun getBooks_when_networkIsNotAvailable_return_localData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns false
         coEvery { bookLocalDataSource.getBook() } returns bookListFake.toListBooks()
             .map { it.toBookEntity() }
 
-        //When
+        // When
         val result = repositoryImpl.getBooks()
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(bookListFake.toListBooks()))
     }
 
     @Test
     fun getBooks_networkIsNotAvailable_insert_dataInRoom() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns true
         val bookListEntity = bookListFake.toListBooks().map { it.toBookEntity() }
         coEvery { bookRemoteDataSource.getBooks() } returns bookListFake
 
-        //When
+        // When
         repositoryImpl.getBooks()
 
-        //Then
+        // Then
         coVerify { bookLocalDataSource.insertBookEntity(bookListEntity) }
     }
 
     @Test
     fun getDetail_when_networkIsAvailable_return_remoteData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns true
         coEvery { bookRemoteDataSource.getDetailBook(bookFake) } returns bookDetailFake
 
-        //When
+        // When
         val result = repositoryImpl.getDetail(bookFake)
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(bookDetailFake.toBookDetail()))
     }
 
     @Test
     fun getDetail_when_networkIsNotAvailable_return_localData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns false
         coEvery { bookLocalDataSource.getBookDetail(bookFake) } returns bookDetailFake.toBookDetail()
             .toBookDetailEntity()
 
-        //When
+        // When
         val result = repositoryImpl.getDetail(bookFake)
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(bookDetailFake.toBookDetail()))
     }
 
     @Test
     fun getDetail_networkIsNotAvailable_insert_dataInRoom() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns true
         val bookListEntity = bookDetailFake.toBookDetail().toBookDetailEntity()
         coEvery { bookRemoteDataSource.getDetailBook(bookFake) } returns bookDetailFake
 
-        //When
+        // When
         repositoryImpl.getDetail(bookFake)
 
-        //Then
+        // Then
         coVerify { bookLocalDataSource.insertBookDetail(bookListEntity) }
     }
 
     @Test
     fun getOrderBook_when_networkIsAvailable_return_remoteData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns true
         coEvery { bookRemoteDataSource.getOrderBook(bookFake) } returns orderBookFake
 
-        //When
+        // When
         val result = repositoryImpl.getOrderBook(bookFake)
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(orderBookFake.toListOrderBook()))
     }
 
     @Test
     fun getOrderBook_when_networkIsNotAvailable_return_localData() = runTest {
-        //Given
+        // Given
         coEvery { networkMonitor.isOnline() } returns false
         coEvery { bookLocalDataSource.getOrderBook(bookFake) } returns orderBookFake.toListOrderBook()
             .toOrderBookEntity(bookFake)
         coEvery { bookLocalDataSource.getAsksBook(bookFake) } returns orderBookFake.toListOrderBook().asks.map { it.toAsksBookEntity() }
         coEvery { bookLocalDataSource.getBidsBook(bookFake) } returns orderBookFake.toListOrderBook().bids.map { it.toBidsBookEntity() }
-
-        //When
+        // When
         val result = repositoryImpl.getOrderBook(bookFake)
 
-        //Then
+        // Then
         assertThat(result).isEqualTo(Result.success(orderBookFake.toListOrderBook()))
     }
 
     @Test
     fun getOrderBook_networkIsNotAvailable_insert_dataInRoom() = runTest {
-        //Given
+        // Given
         val orderBookEntity = orderBookFake.toListOrderBook().toOrderBookEntity(bookFake)
         coEvery { networkMonitor.isOnline() } returns true
         coEvery { bookRemoteDataSource.getOrderBook(bookFake) } returns orderBookFake
 
-        //When
+        // When
         repositoryImpl.getOrderBook(bookFake)
 
-        //Then
+        // Then
         coVerify {
             bookLocalDataSource.updateOrderBookEntity(
                 orderBookEntity,

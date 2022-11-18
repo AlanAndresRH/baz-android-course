@@ -4,10 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalprojectwizelinecryptocurrencies.di.MainScheduler
 import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterUseCase
-import com.example.finalprojectwizelinecryptocurrencies.ui.state.HomeState
+import com.example.finalprojectwizelinecryptocurrencies.ui.home.HomeState
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Scheduler
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -20,6 +21,7 @@ class HomeViewModel @Inject constructor(
     private val getBooksFilterUseCase: GetBooksFilterUseCase
 ) : ViewModel() {
 
+    private val disposable = CompositeDisposable()
     private val _state = MutableStateFlow(HomeState(isLoading = true))
     val state: StateFlow<HomeState> = _state
 
@@ -74,10 +76,7 @@ class HomeViewModel @Inject constructor(
                     it.copy(
                         books = books,
                         keyFilter = key,
-                        showMexico = (key == KeyFilter.FILTER_MXN),
-                        showAllCountry = (key == KeyFilter.NO_FILTER),
-                        isLoading = false,
-                        showErrorData = (books.isEmpty())
+                        isLoading = false
                     )
                 }
             }, {
@@ -92,13 +91,17 @@ class HomeViewModel @Inject constructor(
                 _state.update { state ->
                     state.copy(
                         isLoading = false,
-                        errorMsg = errorMsg,
-                        showMexico = (key == KeyFilter.FILTER_MXN),
-                        showAllCountry = (key == KeyFilter.NO_FILTER),
-                        showErrorData = true
+                        errorMsg = errorMsg
                     )
                 }
-            })
+            }).let {
+                disposable.add(it)
+            }
         }
+    }
+
+    override fun onCleared() {
+        disposable.clear()
+        super.onCleared()
     }
 }

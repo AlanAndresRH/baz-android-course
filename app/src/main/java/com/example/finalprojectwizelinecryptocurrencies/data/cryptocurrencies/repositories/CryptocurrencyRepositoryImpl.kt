@@ -9,12 +9,15 @@ import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.da
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.toListBooks
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.toListOrderBook
 import com.example.finalprojectwizelinecryptocurrencies.data.network.NetworkMonitor
-import com.example.finalprojectwizelinecryptocurrencies.di.IODispatchers
+import com.example.finalprojectwizelinecryptocurrencies.di.IODispatcher
+import com.example.finalprojectwizelinecryptocurrencies.di.IOScheduler
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.*
 import com.example.finalprojectwizelinecryptocurrencies.domain.repositories.CryptocurrencyRepository
+import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.rx2.rxSingle
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -22,7 +25,8 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
     private val bookRemoteDataSource: BookRemoteDataSource,
     private val bookLocalDataSource: BookLocalDataSource,
     private val networkMonitor: NetworkMonitor,
-    @IODispatchers private val dispatcher: CoroutineDispatcher
+    @IODispatcher private val dispatcher: CoroutineDispatcher,
+    @IOScheduler private val scheduler: Scheduler
 ) : CryptocurrencyRepository {
 
     override suspend fun getBooks(): Result<List<Book>> = withContext(dispatcher) {
@@ -36,13 +40,8 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
                 bookLocalDataSource.insertBookEntity(cryptocurrencyEntities)
                 cryptocurrency
             }
-        } else {
-            kotlin.runCatching {
-                bookLocalDataSource.getBook().map {
-                    it.toBook()
-                }
-            }
-        }
+        } else
+            kotlin.runCatching { bookLocalDataSource.getBook().map { it.toBook() } }
     }
 
     override suspend fun getDetail(book: String): Result<BookDetail> = withContext(dispatcher) {
@@ -94,10 +93,13 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
         }
 
     override fun getBooksRxJava(): Single<List<Book>> {
-        return bookRemoteDataSource.getBooksRxJava().map { it.toListBooks() }.doOnSuccess {
-            val cryptocurrencyEntities =
-                it.map { bookList -> bookList.toBookEntity() }
-            bookLocalDataSource.insertBookEntity2(cryptocurrencyEntities)
-        }.subscribeOn(Schedulers.io())
+        return if (networkMonitor.isOnline()) {
+            bookRemoteDataSource.getBooksRxJava().map { it.toListBooks() }.doOnSuccess {
+                val cryptocurrencyEntities =
+                    it.map { bookList -> bookList.toBookEntity() }
+                bookLocalDataSource.insertBookEntity2(cryptocurrencyEntities)
+            }.subscribeOn(Schedulers.io())
+        } else
+            rxSingle { bookLocalDataSource.getBook().map { it.toBook() } }.subscribeOn(scheduler)
     }
 }

@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
@@ -18,11 +19,16 @@ object ThreadModule {
     @Provides
     @Singleton
     @MainScheduler
-    fun providesMainScheduler(): Scheduler =  AndroidSchedulers.mainThread()
+    fun providesMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
 
     @Provides
     @Singleton
-    @IODispatchers
+    @IOScheduler
+    fun providesIOScheduler(): Scheduler = Schedulers.io()
+
+    @Provides
+    @Singleton
+    @IODispatcher
     fun providesIoDispatchers(): CoroutineDispatcher = Dispatchers.IO
 }
 
@@ -32,4 +38,8 @@ annotation class MainScheduler
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class IODispatchers
+annotation class IODispatcher
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class IOScheduler

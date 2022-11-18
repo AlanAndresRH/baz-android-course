@@ -28,7 +28,7 @@ class GetBooksFilterUseCaseTest {
 
     @Test
     fun invokeRxJava() = runTest {
-        //Given
+        // Given
         val fakeData = listOf(
             Book(
                 "btc_mxn",
@@ -40,10 +40,10 @@ class GetBooksFilterUseCaseTest {
         )
         coEvery { repository.getBooksRxJava() } returns Single.just(fakeData)
 
-        //When
+        // When
         val result = getBooksFilterUseCase.invokeRxJava(KeyFilter.FILTER_MXN)
 
-        //Then
+        // Then
         assertThat(result.blockingGet()).isEqualTo(fakeData)
     }
 }

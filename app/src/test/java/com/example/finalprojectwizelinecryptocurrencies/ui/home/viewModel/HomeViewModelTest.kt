@@ -33,8 +33,8 @@ internal class HomeViewModelTest {
     }
 
     @Test
-    fun changeFilterKeyRxJava() = runTest{
-        //Given
+    fun changeFilterKeyRxJava() = runTest {
+        // Given
         val fakeData = listOf(
             Book(
                 "btc_mxn",
@@ -47,10 +47,10 @@ internal class HomeViewModelTest {
 
         coEvery { getBooksFilterUseCase.invokeRxJava(KeyFilter.FILTER_MXN) } returns Single.just(fakeData)
 
-        //When
+        // When
         homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
 
-        //Then
+        // Then
         assertThat(homeViewModel.state.first().books).isEqualTo(fakeData)
     }
 

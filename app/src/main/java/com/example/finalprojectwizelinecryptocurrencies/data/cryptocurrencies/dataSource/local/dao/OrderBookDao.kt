@@ -1,9 +1,6 @@
 package com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.AsksBookEntity
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.BidsBookEntity
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.local.entities.OrderBookEntity
@@ -33,4 +30,19 @@ interface OrderBookDao {
 
     @Query("DELETE FROM bidsBookEntity WHERE book = :book")
     suspend fun deleteBidsEntity(book: String)
+
+    @Transaction
+    suspend fun updateOrderBookEntity(
+        orderBook: OrderBookEntity,
+        asksBookEntity: List<AsksBookEntity>,
+        bidsBookEntity: List<BidsBookEntity>
+    ) {
+        insertOrderBookEntity(orderBook)
+
+        deleteAskEntity(orderBook.book)
+        insertAsksEntity(asksBookEntity)
+
+        deleteBidsEntity(orderBook.book)
+        insertBidsEntity(bidsBookEntity)
+    }
 }

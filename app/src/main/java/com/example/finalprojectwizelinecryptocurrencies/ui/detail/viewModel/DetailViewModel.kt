@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetDetailBookUseCase
 import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetOrderBookUserCase
-import com.example.finalprojectwizelinecryptocurrencies.ui.state.DetailState
+import com.example.finalprojectwizelinecryptocurrencies.ui.detail.DetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

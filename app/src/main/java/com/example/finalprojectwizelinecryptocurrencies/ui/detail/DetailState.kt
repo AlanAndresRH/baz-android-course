@@ -1,4 +1,4 @@
-package com.example.finalprojectwizelinecryptocurrencies.ui.state
+package com.example.finalprojectwizelinecryptocurrencies.ui.detail
 
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.BookDetail
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.OrderBook

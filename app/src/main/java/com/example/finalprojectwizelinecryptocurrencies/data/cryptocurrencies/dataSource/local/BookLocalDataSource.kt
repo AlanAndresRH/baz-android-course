@@ -30,13 +30,7 @@ class BookLocalDataSource @Inject constructor(
         asksBookEntity: List<AsksBookEntity>,
         bidsBookEntity: List<BidsBookEntity>
     ) {
-        orderBookDao.insertOrderBookEntity(orderBook)
-
-        orderBookDao.deleteAskEntity(orderBook.book)
-        orderBookDao.insertAsksEntity(asksBookEntity)
-
-        orderBookDao.deleteBidsEntity(orderBook.book)
-        orderBookDao.insertBidsEntity(bidsBookEntity)
+        orderBookDao.updateOrderBookEntity(orderBook, asksBookEntity, bidsBookEntity)
     }
 
     suspend fun getOrderBook(book: String) = orderBookDao.getOrderBook(book)

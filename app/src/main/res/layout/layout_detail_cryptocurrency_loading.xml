@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtCryptoCurrencies"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtNameCryptocurrency"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtCryptoCurrencies" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtNameCryptocurrency"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toEndOf="@id/fmtTxtNameCryptocurrency"
         app:layout_constraintTop_toBottomOf="@id/fmtCryptoCurrencies" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtNameBook"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtTxtNameCryptocurrency" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtNameBook"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toEndOf="@id/fmtTxtNameBook"
         app:layout_constraintTop_toBottomOf="@id/fmtNameCryptocurrency" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtVolume"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -82,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtTxtNameBook" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtVolume"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -95,7 +95,7 @@
         app:layout_constraintStart_toEndOf="@id/fmtTxtVolume"
         app:layout_constraintTop_toBottomOf="@id/fmtNameBook" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtHigh"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -108,7 +108,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtTxtVolume" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtHigh"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -121,7 +121,7 @@
         app:layout_constraintStart_toEndOf="@id/fmtTxtHigh"
         app:layout_constraintTop_toBottomOf="@id/fmtVolume" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtCreatedAt"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -134,7 +134,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtTxtHigh" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtCreatedAt"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -147,7 +147,7 @@
         app:layout_constraintStart_toEndOf="@id/fmtTxtCreatedAt"
         app:layout_constraintTop_toBottomOf="@id/fmtHigh" />
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtAsks"
         android:layout_width="0dp"
         android:layout_height="24dp"
@@ -185,7 +185,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtTxtBids"
         android:layout_width="0dp"
         android:layout_height="24dp"

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
 
-    <FrameLayout
+    <View
         android:id="@+id/fmtNameBook"
         android:layout_width="80dp"
         android:layout_height="18dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="btc_mxn" />
 
-    <TextView
+    <View
         android:id="@+id/fmtPriceCryptocurrency"
         android:layout_width="80dp"
         android:layout_height="18dp"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fmtNameBook" />
 
-    <TextView
+    <View
         android:id="@+id/fmtAmountCryptocurrency"
         android:layout_width="80dp"
         android:layout_height="18dp"
