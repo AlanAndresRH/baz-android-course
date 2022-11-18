@@ -62,7 +62,8 @@ class DetailViewModel @Inject constructor(
     fun getOrderBook() {
         state.update {
             it.copy(
-                isLoading = true
+                isLoading = true,
+                showData = false
             )
         }
 
@@ -75,6 +76,7 @@ class DetailViewModel @Inject constructor(
                         state.copy(
                             orderBook = resSuccess,
                             isLoading = false,
+                            showData = true,
                             showErrorData = (resSuccess == null)
                         )
                     }

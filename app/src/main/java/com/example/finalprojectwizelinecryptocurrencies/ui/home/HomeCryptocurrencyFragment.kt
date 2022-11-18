@@ -52,6 +52,12 @@ class HomeCryptocurrencyFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -71,14 +77,21 @@ class HomeCryptocurrencyFragment : Fragment() {
                     showMexicoFilter = uiState.showMexico
                     showAllCountryFilter = uiState.showAllCountry
 
-                    if (!uiState.errorMsg.isNullOrEmpty())
-                        Snackbar.make(binding.root, "${uiState.errorMsg}", Snackbar.LENGTH_SHORT)
-                            .show()
+                    binding.apply {
+                        if (!uiState.errorMsg.isNullOrEmpty())
+                            Snackbar.make(
+                                binding.root,
+                                "${uiState.errorMsg}",
+                                Snackbar.LENGTH_SHORT
+                            )
+                                .show()
 
-                    binding.lytError.container.isVisible = uiState.showErrorData
-                    binding.containerProgressBar.container.isVisible = uiState.isLoading
-                    binding.lytError.btnRetry.setOnClickListener {
-                        homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
+                        lytError.container.isVisible = uiState.showErrorData
+                        containerLoading.isVisible = uiState.isLoading
+                        rvCryptocurrency.isVisible = !uiState.isLoading
+                        lytError.btnRetry.setOnClickListener {
+                            homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
+                        }
                     }
                 }
             }

@@ -12,4 +12,5 @@
     <color name="app_color">#372196F3</color>
     <color name="background_item_ask_bids">#33FFFFFF</color>
     <color name="background_loading">#BE8A8A8A</color>
+    <color name="background_loading_shimmer">#C8C8C9</color>
 </resources>

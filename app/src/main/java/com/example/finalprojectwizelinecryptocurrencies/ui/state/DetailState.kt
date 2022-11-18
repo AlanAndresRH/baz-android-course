@@ -7,6 +7,7 @@ data class DetailState(
     val book: BookDetail? = null,
     val orderBook: OrderBook? = null,
     val isLoading: Boolean = false,
+    val showData: Boolean = false,
     val errorMsg: String? = null,
     val askBookListEmpty: Boolean = false,
     val bidBookListEmpty: Boolean = false,

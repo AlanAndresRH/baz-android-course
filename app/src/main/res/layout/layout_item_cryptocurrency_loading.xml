@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <View
+        android:id="@+id/imgCryptoCurrencies"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/ic_ripple"
+        android:backgroundTint="@color/background_loading_shimmer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fTvNameCryptocurrency"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_margin="4dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tvNameBook"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_margin="4dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
+        app:layout_constraintTop_toBottomOf="@id/fTvNameCryptocurrency" />
+
+    <View
+        android:id="@+id/tvPriceMinCryptocurrency"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_margin="4dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
+        app:layout_constraintTop_toBottomOf="@id/tvNameBook" />
+
+    <View
+        android:id="@+id/tvPriceMaxCryptocurrency"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_margin="4dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgCryptoCurrencies"
+        app:layout_constraintTop_toBottomOf="@id/tvPriceMinCryptocurrency" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,21 +9,23 @@ import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.da
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.toListBooks
 import com.example.finalprojectwizelinecryptocurrencies.data.cryptocurrencies.dataSource.remote.dto.toListOrderBook
 import com.example.finalprojectwizelinecryptocurrencies.data.network.NetworkMonitor
+import com.example.finalprojectwizelinecryptocurrencies.di.IODispatchers
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.*
 import com.example.finalprojectwizelinecryptocurrencies.domain.repositories.CryptocurrencyRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CryptocurrencyRepositoryImpl @Inject constructor(
     private val bookRemoteDataSource: BookRemoteDataSource,
     private val bookLocalDataSource: BookLocalDataSource,
-    private val networkMonitor: NetworkMonitor
+    private val networkMonitor: NetworkMonitor,
+    @IODispatchers private val dispatcher: CoroutineDispatcher
 ) : CryptocurrencyRepository {
 
-    override suspend fun getBooks(): Result<List<Book>> = withContext(Dispatchers.IO) {
+    override suspend fun getBooks(): Result<List<Book>> = withContext(dispatcher) {
         if (networkMonitor.isOnline()) {
             kotlin.runCatching {
                 val cryptocurrency = bookRemoteDataSource.getBooks()?.toListBooks() ?: emptyList()
@@ -43,7 +45,7 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDetail(book: String): Result<BookDetail> = withContext(Dispatchers.IO) {
+    override suspend fun getDetail(book: String): Result<BookDetail> = withContext(dispatcher) {
         if (networkMonitor.isOnline()) {
             kotlin.runCatching {
                 val bookDetail = bookRemoteDataSource.getDetailBook(book).toBookDetail()
@@ -57,7 +59,7 @@ class CryptocurrencyRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getOrderBook(book: String): Result<OrderBook> =
-        withContext(Dispatchers.IO) {
+        withContext(dispatcher) {
             if (networkMonitor.isOnline()) {
                 kotlin.runCatching {
                     val orderBook = bookRemoteDataSource.getOrderBook(book).toListOrderBook()

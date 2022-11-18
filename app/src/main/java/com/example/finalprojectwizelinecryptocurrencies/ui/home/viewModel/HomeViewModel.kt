@@ -2,11 +2,12 @@ package com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.finalprojectwizelinecryptocurrencies.di.MainScheduler
 import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterUseCase
 import com.example.finalprojectwizelinecryptocurrencies.ui.state.HomeState
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Scheduler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -15,18 +16,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    @MainScheduler private val mainScheduler: Scheduler,
     private val getBooksFilterUseCase: GetBooksFilterUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState(isLoading = true))
     val state: StateFlow<HomeState> = _state
 
-    init {
-        // changeFilterKey(KeyFilter.FILTER_MXN)
-        changeFilterKeyRxJava(KeyFilter.FILTER_MXN)
-    }
-
-    fun changeFilterKey(key: KeyFilter) {
+    /*fun changeFilterKey(key: KeyFilter) {
         _state.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
@@ -65,14 +62,14 @@ class HomeViewModel @Inject constructor(
                 }
             )
         }
-    }
+    }*/
 
     fun changeFilterKeyRxJava(key: KeyFilter) {
         _state.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
             val resBook = getBooksFilterUseCase.invokeRxJava(key)
-            resBook.observeOn(AndroidSchedulers.mainThread()).subscribe({ books ->
+            resBook.observeOn(mainScheduler).subscribe({ books ->
                 _state.update {
                     it.copy(
                         books = books,

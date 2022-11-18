@@ -60,9 +60,6 @@ class DetailCryptocurrencyFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailViewModel.state.collect { uiState ->
                     binding.apply {
-                        lytError.container.isVisible = uiState.showErrorData
-                        containerDataDetail.isVisible = !uiState.showErrorData
-
                         Glide.with(requireContext())
                             .load(uiState.book?.image)
                             .centerCrop()
@@ -73,7 +70,10 @@ class DetailCryptocurrencyFragment : Fragment() {
                         tvHigh.text = uiState.book?.high
                         tvVolume.text = uiState.book?.volume
                         tvCreatedAt.text = uiState.book?.createdAt
-                        lytProgressBar.container.isVisible = uiState.isLoading
+
+                        containerLoading.isVisible = uiState.isLoading
+                        containerDataDetail.isVisible = uiState.showData
+                        lytError.container.isVisible = uiState.showErrorData
 
                         askAdapter.submitList(uiState.orderBook?.asks)
                         bidsAdapter.submitList(uiState.orderBook?.bids)

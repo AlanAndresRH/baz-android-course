@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fmtCryptoCurrencies"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_ripple"
+        android:backgroundTint="@color/background_loading_shimmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtNameCryptocurrency"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtTxtNameBook"
+        app:layout_constraintEnd_toStartOf="@id/fmtNameCryptocurrency"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fmtCryptoCurrencies" />
+
+    <FrameLayout
+        android:id="@+id/fmtNameCryptocurrency"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtNameBook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fmtTxtNameCryptocurrency"
+        app:layout_constraintTop_toBottomOf="@id/fmtCryptoCurrencies" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtNameBook"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtTxtVolume"
+        app:layout_constraintEnd_toStartOf="@id/fmtNameBook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fmtTxtNameCryptocurrency" />
+
+    <FrameLayout
+        android:id="@+id/fmtNameBook"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtVolume"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fmtTxtNameBook"
+        app:layout_constraintTop_toBottomOf="@id/fmtNameCryptocurrency" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtVolume"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtHigh"
+        app:layout_constraintEnd_toStartOf="@id/fmtVolume"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fmtTxtNameBook" />
+
+    <FrameLayout
+        android:id="@+id/fmtVolume"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtTxtHigh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fmtTxtVolume"
+        app:layout_constraintTop_toBottomOf="@id/fmtNameBook" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtHigh"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtTxtCreatedAt"
+        app:layout_constraintEnd_toStartOf="@id/fmtHigh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fmtTxtVolume" />
+
+    <FrameLayout
+        android:id="@+id/fmtHigh"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@id/fmtCreatedAt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fmtTxtHigh"
+        app:layout_constraintTop_toBottomOf="@id/fmtVolume" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtCreatedAt"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="33dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toStartOf="@id/fmtCreatedAt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fmtTxtHigh" />
+
+    <FrameLayout
+        android:id="@+id/fmtCreatedAt"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="33dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fmtTxtCreatedAt"
+        app:layout_constraintTop_toBottomOf="@id/fmtHigh" />
+
+    <FrameLayout
+        android:id="@+id/fmtTxtAsks"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="33dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="@id/fmtTxtCreatedAt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fmtTxtCreatedAt" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/fmtRvAsks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fmtTxtAsks">
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <FrameLayout
+        android:id="@+id/fmtTxtBids"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="33dp"
+        android:background="@color/background_loading_shimmer"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="@id/fmtTxtAsks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fmtRvAsks" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/fmtRvBids"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fmtTxtBids">
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+        <include layout="@layout/layout_item_asks_bids_loading" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
