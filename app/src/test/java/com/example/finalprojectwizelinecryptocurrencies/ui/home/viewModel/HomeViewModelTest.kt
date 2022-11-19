@@ -1,7 +1,7 @@
 package com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel
 
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.Book
-import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterUseCase
+import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterRxJavaUseCase
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -22,14 +22,14 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 internal class HomeViewModelTest {
     @RelaxedMockK
-    private lateinit var getBooksFilterUseCase: GetBooksFilterUseCase
+    private lateinit var getBooksFilterRxJavaUseCase: GetBooksFilterRxJavaUseCase
     private lateinit var homeViewModel: HomeViewModel
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         Dispatchers.setMain(Dispatchers.Unconfined)
-        homeViewModel = HomeViewModel(Schedulers.trampoline(), getBooksFilterUseCase)
+        homeViewModel = HomeViewModel(Schedulers.trampoline(), getBooksFilterRxJavaUseCase)
     }
 
     @Test
@@ -45,7 +45,7 @@ internal class HomeViewModelTest {
             )
         )
 
-        coEvery { getBooksFilterUseCase.invokeRxJava(KeyFilter.FILTER_MXN) } returns Single.just(fakeData)
+        coEvery { getBooksFilterRxJavaUseCase.invokeRxJava(KeyFilter.FILTER_MXN) } returns Single.just(fakeData)
 
         // When
         homeViewModel.changeFilterKeyRxJava(KeyFilter.FILTER_MXN)

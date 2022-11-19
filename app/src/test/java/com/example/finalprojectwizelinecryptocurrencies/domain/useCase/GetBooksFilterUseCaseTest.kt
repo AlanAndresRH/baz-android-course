@@ -15,7 +15,7 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class GetBooksFilterUseCaseTest {
-    private lateinit var getBooksFilterUseCase: GetBooksFilterUseCase
+    private lateinit var getBooksFilterRxJavaUseCase: GetBooksFilterRxJavaUseCase
 
     @RelaxedMockK
     private lateinit var repository: CryptocurrencyRepositoryImpl
@@ -23,7 +23,7 @@ class GetBooksFilterUseCaseTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        getBooksFilterUseCase = GetBooksFilterUseCase(repository)
+        getBooksFilterRxJavaUseCase = GetBooksFilterRxJavaUseCase(repository)
     }
 
     @Test
@@ -41,7 +41,7 @@ class GetBooksFilterUseCaseTest {
         coEvery { repository.getBooksRxJava() } returns Single.just(fakeData)
 
         // When
-        val result = getBooksFilterUseCase.invokeRxJava(KeyFilter.FILTER_MXN)
+        val result = getBooksFilterRxJavaUseCase.invokeRxJava(KeyFilter.FILTER_MXN)
 
         // Then
         assertThat(result.blockingGet()).isEqualTo(fakeData)

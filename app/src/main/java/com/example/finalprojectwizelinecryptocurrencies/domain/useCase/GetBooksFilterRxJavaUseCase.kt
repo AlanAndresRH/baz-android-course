@@ -3,13 +3,15 @@ package com.example.finalprojectwizelinecryptocurrencies.domain.useCase
 import com.example.finalprojectwizelinecryptocurrencies.domain.model.Book
 import com.example.finalprojectwizelinecryptocurrencies.domain.repositories.CryptocurrencyRepository
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
+import io.reactivex.Single
 import javax.inject.Inject
 
-class GetBooksFilterUseCase @Inject constructor(
+class GetBooksFilterRxJavaUseCase @Inject constructor(
     private var repository: CryptocurrencyRepository
 ) {
-    suspend operator fun invoke(key: KeyFilter): Result<List<Book>> {
-        return repository.getBooks().map { books ->
+
+    fun invokeRxJava(key: KeyFilter): Single<List<Book>> {
+        return repository.getBooksRxJava().map { books ->
             when (key) {
                 KeyFilter.FILTER_MXN -> {
                     books.filter { crypto ->

@@ -3,7 +3,7 @@ package com.example.finalprojectwizelinecryptocurrencies.ui.home.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalprojectwizelinecryptocurrencies.di.MainScheduler
-import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterUseCase
+import com.example.finalprojectwizelinecryptocurrencies.domain.useCase.GetBooksFilterRxJavaUseCase
 import com.example.finalprojectwizelinecryptocurrencies.ui.home.HomeState
 import com.example.finalprojectwizelinecryptocurrencies.utils.KeyFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     @MainScheduler private val mainScheduler: Scheduler,
-    private val getBooksFilterUseCase: GetBooksFilterUseCase
+    //private val getBooksFilterUseCase: GetBooksFilterUseCase,
+    private val getBooksFilterRxJavaUseCase: GetBooksFilterRxJavaUseCase
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -36,10 +37,7 @@ class HomeViewModel @Inject constructor(
                         it.copy(
                             books = resSuccess,
                             keyFilter = key,
-                            showMexico = (key == KeyFilter.FILTER_MXN),
-                            showAllCountry = (key == KeyFilter.NO_FILTER),
                             isLoading = false,
-                            showErrorData = (resSuccess.isEmpty())
                         )
                     }
                 },
@@ -56,9 +54,6 @@ class HomeViewModel @Inject constructor(
                         state.copy(
                             isLoading = false,
                             errorMsg = errorMsg,
-                            showMexico = (key == KeyFilter.FILTER_MXN),
-                            showAllCountry = (key == KeyFilter.NO_FILTER),
-                            showErrorData = true
                         )
                     }
                 }
@@ -70,7 +65,7 @@ class HomeViewModel @Inject constructor(
         _state.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
-            val resBook = getBooksFilterUseCase.invokeRxJava(key)
+            val resBook = getBooksFilterRxJavaUseCase.invokeRxJava(key)
             resBook.observeOn(mainScheduler).subscribe({ books ->
                 _state.update {
                     it.copy(
