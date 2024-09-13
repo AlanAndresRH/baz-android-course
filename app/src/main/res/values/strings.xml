@@ -1,5 +1,22 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">FinalProjectWizelineCryptocurrencies</string>
     <string name="title_app">Criptomonedas</string>
-    <string name="content_description_image">Image</string>
+    <string name="content_description_image">Imagen</string>
+    <string name="title_detail_cryptocurrency">Detalle</string>
+    <string name="lbl_crypto">Criptomoneda:</string>
+    <string name="lbl_name_book">Book:</string>
+    <string name="lbl_volume">Cantidad:</string>
+    <string name="lbl_high">Alta:</string>
+    <string name="lbl_created_at">Creado:</string>
+    <string name="sort_list_mxn">Solo México</string>
+    <string name="sort_list_all">Todos los países</string>
+    <string name="filter_menu">Filtrar</string>
+    <string name="lbl_asks">Asks:</string>
+    <string name="lbl_bids">Bids:</string>
+    <string name="offline" tools:ignore="Typos">En este momento no tienes conexión.</string>
+    <string name="connection_restored">Se restauro la conexión a internet.</string>
+    <string name="connection_error">Se produjo un error de conexión</string>
+    <string name="check_internet_connection">No se pudo obtener la información revise su conexión a internet</string>
+    <string name="btn_retry">Reintentar</string>
+
 </resources>

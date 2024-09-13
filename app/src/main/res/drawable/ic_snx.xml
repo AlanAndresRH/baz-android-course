@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="58dp"
+    android:height="58dp"
+    android:autoMirrored="true"
+    android:viewportWidth="192"
+    android:viewportHeight="192">
+    <path android:pathData="M95.99,95.99m-95.99,0a95.99,95.99 0,1 1,191.98 0a95.99,95.99 0,1 1,-191.98 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="96"
+                android:endY="50.8"
+                android:startX="96"
+                android:startY="-0"
+                android:type="linear">
+                <item
+                    android:color="#FF090220"
+                    android:offset="0" />
+                <item
+                    android:color="#FF170659"
+                    android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#00D1FF"
+        android:pathData="M64.37,72.12c-0.77,-0.95 -1.93,-1.48 -3.17,-1.48l-25.64,0c-0.21,0 -0.4,-0.08 -0.56,-0.21c-0.13,-0.13 -0.21,-0.29 -0.21,-0.48l0,-17.28c0,-0.19 0.08,-0.34 0.21,-0.48c0.16,-0.16 0.34,-0.24 0.56,-0.21l27.09,0c6.83,0 12.73,2.8 17.7,8.39l6.59,8.04l-12.83,15.64L64.37,72.12zM111.73,60.3c4.95,-5.53 10.87,-8.31 17.78,-8.31l27.01,0c0.19,-0.03 0.37,0.05 0.5,0.16c0.13,0.13 0.19,0.32 0.16,0.53l0,17.28c0,0.19 -0.05,0.34 -0.16,0.48c-0.13,0.16 -0.32,0.24 -0.5,0.21l-25.64,0c-1.22,-0.03 -2.38,0.53 -3.17,1.48l-18.89,22.99L127.79,118.27c0.77,0.87 1.9,1.4 3.07,1.38l25.64,0c0.19,-0.03 0.4,0.08 0.5,0.21c0.11,0.16 0.19,0.37 0.16,0.56l0,17.28c0,0.19 -0.05,0.34 -0.16,0.48c-0.13,0.16 -0.32,0.24 -0.5,0.21L129.51,138.38c-6.91,0 -12.78,-2.8 -17.7,-8.39l-15.72,-19.18l-15.72,19.18c-4.95,5.58 -10.87,8.39 -17.78,8.39L35.56,138.38c-0.19,0.03 -0.4,-0.08 -0.5,-0.21c-0.13,-0.16 -0.19,-0.37 -0.16,-0.56l0,-17.28c0,-0.19 0.05,-0.34 0.16,-0.48c0.13,-0.16 0.32,-0.24 0.5,-0.21l25.64,0c1.22,0 2.38,-0.56 3.17,-1.48l18.55,-22.65L111.73,60.3z"
+        tools:ignore="VectorPath" />
+</vector>
