@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeCryptocurrencyFragment"
+    tools:ignore="UnusedAttribute">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarHome"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_home_sort_list"
+        app:title="@string/title_app"
+        app:titleCentered="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCryptocurrency"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHome" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHome"
+        app:shimmer_auto_start="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/containerLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+            <include layout="@layout/layout_item_cryptocurrency_loading" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include
+        android:id="@+id/lytError"
+        layout="@layout/layout_no_data" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
